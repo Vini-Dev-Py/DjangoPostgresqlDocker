@@ -1,16 +1,13 @@
-version: "3.9"
+version: "3"
 
 services: 
   db:
-    build: .
-    image: postgres
+    image: postgres:12.4-alpine
     container_name: postgres
     networks:
       - network
     environment: 
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgresql
+      POSTGRES_PASSWORD: "postgresql"
     ports: 
       - "5440:5432"
     volumes: 
@@ -41,8 +38,6 @@ services:
       - "8000:8000"
     depends_on: 
       - db
-    links: 
-      - db:db
     networks:
       - network
 
